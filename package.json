@@ -1,0 +1,31 @@
+{
+  "name": "awesome-config",
+  "version": "1.0.0",
+  "description": "My config, theme and script files for Awesome window manager",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pemakhov/awesome-config.git"
+  },
+  "keywords": [
+    "awesome"
+  ],
+  "author": "Serhii Pemakhov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pemakhov/awesome-config/issues"
+  },
+  "homepage": "https://github.com/pemakhov/awesome-config#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

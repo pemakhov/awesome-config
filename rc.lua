@@ -13,6 +13,14 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+-- Battery widget
+beautiful.tooltip_fg = beautiful.fg_normal
+beautiful.tooltip_bg = beautiful.bg_normal
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
+-- Brightness widget
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
+-- Volume widget
+local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 
 -- Load Debian menu entries
 local debian = require("debian.menu")
@@ -236,6 +244,16 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             -- wibox.widget.systray(),
+	    volume_widget({notifications = false}),
+	    brightness_widget({
+	    	get_brightness_cmd = 'xbacklight -get',
+		font = 'Play 10'
+	    }),
+	    battery_widget({
+		    margin_left = 8,
+		    show_current_level = true,
+		    font = 'Play 10'
+	    }),
             mytextclock,
             s.mylayoutbox,
         },
@@ -377,10 +395,9 @@ clientkeys = gears.table.join(
               {description = "backlight decrease", group = "awesome"}),
     awful.key({ modkey,           }, "F10",      function () awful.spawn.with_shell("xbacklight -inc 10") end,
               {description = "backlight increase", group = "awesome"}),
-    awful.key({ modkey,           }, "F6",      function () awful.spawn.with_shell("pactl -- set-sink-volume 0 -10%") end,
-              {description = "volume down", group = "awesome"}),
-    awful.key({ modkey,           }, "F7",      function () awful.spawn.with_shell("pactl -- set-sink-volume 0 +10%") end,
-              {description = "volume up", group = "awesome"}),
+    awful.key({ modkey,           }, "F6",      function () awful.spawn("amixer -D pulse sset Master 5%-") end,
+    		{description = "increase volume", group = "custom"}),
+    awful.key({ modkey,           }, "F7",      function () awful.spawn("amixer -D pulse sset Master 5%+") end, {description = "increase volume", group = "custom"}),
     -- End of my key bindings section
 
     awful.key({ modkey,           }, "n",
@@ -524,6 +541,8 @@ awful.rules.rules = {
       properties = { screen = 1, tag = "trm" } },
     { rule = { class = "Nemo" },
       properties = { screen = 1, tag = "fls" } },
+    { rule = { class = "Org.gnome.Nautilus" },
+      properties = { screen = 1, tag = "fls" } },
     { rule = { class = "TelegramDesktop" },
       properties = { screen = 1, tag = "cht" } },
     { rule = { class = "Skype" },
@@ -605,12 +624,12 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 do
   local cmds =
   {
-    "chromium-browser",
-    "skypeforlinux",
-    "telegram-desktop",
-    "gnome-terminal",
-    "code",
-    "nemo"
+--    "chromium-browser",
+--    "skypeforlinux",
+--    "telegram-desktop",
+--    "gnome-terminal",
+--    "code",
+--    "nautilus"
   }
 
   for _,i in pairs(cmds) do
