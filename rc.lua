@@ -21,6 +21,10 @@ local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 -- Volume widget
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+-- CPU widget
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+-- Weather widget
+local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
 
 -- Load Debian menu entries
 local debian = require("debian.menu")
@@ -242,18 +246,28 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
             -- wibox.widget.systray(),
-	    volume_widget({notifications = false}),
+	    volume_widget({display_notification = false}),
 	    brightness_widget({
 	    	get_brightness_cmd = 'xbacklight -get',
-		font = 'Play 10'
+		font = 'Play 13'
 	    }),
 	    battery_widget({
 		    margin_left = 8,
 		    show_current_level = true,
-		    font = 'Play 10'
+		    font = 'Play 13'
 	    }),
+	    weather_widget({
+            	api_key = 'd8db4200188415907b23cd38e4763112',
+		city = 'Kropyvnytskyi, ua',
+            	font = 'Play 13',
+       	    }),
+	    cpu_widget({
+		    width = 30,
+		    step_width = 3,
+		    step_spacing = 1
+	    }),
+            mykeyboardlayout,
             mytextclock,
             s.mylayoutbox,
         },
@@ -624,12 +638,12 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 do
   local cmds =
   {
---    "chromium-browser",
---    "skypeforlinux",
---    "telegram-desktop",
---    "gnome-terminal",
---    "code",
---    "nautilus"
+    "chromium-browser",
+    "skypeforlinux",
+    "telegram-desktop",
+    "gnome-terminal",
+    "code",
+    "nautilus"
   }
 
   for _,i in pairs(cmds) do

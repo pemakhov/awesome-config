@@ -12,7 +12,7 @@ local varnitsa_path = "/home/pemakhov/.config/awesome/themes/varnitsa"
 
 local theme = {}
 
-theme.font          = "ubuntumono 15"
+theme.font          = "Play 13"
 
 theme.bg_normal     = "#040c0e"
 theme.bg_focus      = "#525b56"
