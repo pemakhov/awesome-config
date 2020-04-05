@@ -247,13 +247,15 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- wibox.widget.systray(),
+            mykeyboardlayout,
 	    volume_widget({display_notification = false}),
 	    brightness_widget({
 	    	get_brightness_cmd = 'xbacklight -get',
 		font = 'Play 13'
 	    }),
 	    battery_widget({
-		    margin_left = 8,
+		    margin_left = 20,
+		    margin_right = 10,
 		    show_current_level = true,
 		    font = 'Play 13'
 	    }),
@@ -267,7 +269,6 @@ awful.screen.connect_for_each_screen(function(s)
 		    step_width = 3,
 		    step_spacing = 1
 	    }),
-            mykeyboardlayout,
             mytextclock,
             s.mylayoutbox,
         },
@@ -638,12 +639,12 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 do
   local cmds =
   {
-    "chromium-browser",
-    "skypeforlinux",
-    "telegram-desktop",
-    "gnome-terminal",
-    "code",
-    "nautilus"
+--    "chromium-browser",
+--    "skypeforlinux",
+--    "telegram-desktop",
+--    "gnome-terminal",
+--    "code",
+--    "nautilus"
   }
 
   for _,i in pairs(cmds) do
