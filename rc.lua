@@ -26,6 +26,10 @@ local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 -- Weather widget
 local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
 
+-- Systray
+-- local systray = wibox.widget.systray()
+-- systray:set_base_size(24)
+
 -- Load Debian menu entries
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
@@ -247,6 +251,15 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- wibox.widget.systray(),
+            {
+                widget = wibox.container.margin,
+                left   = 30,
+                right  = 20,
+		top    = 4,
+		bottom = 4,
+                draw_empty = false,
+                wibox.widget.systray(),
+            },
             mykeyboardlayout,
 	    volume_widget({display_notification = false}),
 	    brightness_widget({

@@ -31,6 +31,8 @@ theme.border_normal = theme.bg_normal
 theme.border_focus  = theme.bg_focus
 theme.border_marked = "#91231c"
 
+theme.systray_icon_spacing = 15
+
 --theme.taglist_bg_focus = "#a79c93"
 
 -- There are other variable sets
