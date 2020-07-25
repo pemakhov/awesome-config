@@ -652,12 +652,12 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 do
   local cmds =
   {
---    "chromium-browser",
---    "skypeforlinux",
---    "telegram-desktop",
---    "gnome-terminal",
---    "code",
---    "nautilus"
+    "chromium-browser",
+    "skypeforlinux",
+    "telegram-desktop",
+    "gnome-terminal",
+    "code",
+    "nautilus"
   }
 
   for _,i in pairs(cmds) do
